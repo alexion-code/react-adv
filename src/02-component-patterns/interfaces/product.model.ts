@@ -1,15 +1,34 @@
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement } from "react";
 
 export interface IProductCardProps {
   product: IProduct;
   children?: ReactElement | ReactElement[];
+  className?: string;
+  style?: CSSProperties;
+}
+
+export interface IProductTitleProps {
+  title?: string;
+  className?: string;
+  style?: CSSProperties;
+}
+
+export interface IProductImageProps {
+  img?: string;
+  className?: string;
+  style?: CSSProperties;
+}
+
+export interface IProductButtonsProps {
+  className?: string;
+  style?: CSSProperties;
 }
 
 export interface IProductCardHOCProps {
-  ({ children, product }: IProductCardProps): JSX.Element;
-  Title: ({ title }: { title?: string }) => JSX.Element;
-  Image: ({ img }: { img?: string }) => JSX.Element;
-  Buttons: () => JSX.Element;
+  (props: IProductCardProps): JSX.Element;
+  Title: (props: IProductTitleProps) => JSX.Element;
+  Image: (props: IProductImageProps) => JSX.Element;
+  Buttons: ({className}: IProductButtonsProps) => JSX.Element;
 }
 
 export interface IProduct {

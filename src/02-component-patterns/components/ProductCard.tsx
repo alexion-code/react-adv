@@ -1,4 +1,4 @@
-import { createContext,  useContext } from "react";
+import { createContext } from "react";
 import { useProduct } from "../hooks/useProduct";
 import { IProductContextProps, IProductCardProps } from "../interfaces/product.model";
 import styles from "../styles/styles.module.css";

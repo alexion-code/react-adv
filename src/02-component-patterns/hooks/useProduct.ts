@@ -9,16 +9,20 @@ export const useProduct = ({
 
   const [counter, setCounter] = useState(value);
 
-  const isControlled = useRef(!!onChange)
+  // const isControlled = useRef(!!onChange)
 
   const increaseBy = (value: number) => {
-    if (isControlled.current) {
-      return onChange!({count: value, product}) //la ! le indica que sabemos que onChange no es null | undefined
-    }
+    // if (isControlled.current) {
+    //   return onChange!({count: value, product}) //la ! le indica que sabemos que onChange no es null | undefined
+    // }
     const newValue=Math.max(counter + value, 0)
     setCounter(newValue);
-    onChange && onChange({ count: newValue, product });
+    // onChange && onChange({ count: newValue, product });
   };
+
+  useLayoutEffect(() => {
+    onChange && onChange({ count: counter, product });
+  }, [counter]);
 
   useLayoutEffect(() => {
     setCounter(value);

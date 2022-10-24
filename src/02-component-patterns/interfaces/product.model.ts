@@ -2,11 +2,18 @@ import { CSSProperties, ReactElement } from "react";
 
 export interface IProductCardProps {
   product: IProduct;
-  children?: ReactElement | ReactElement[];
+  // children?: ReactElement | ReactElement[];
+  children: (args: IProductCardHandlers)=> JSX.Element;
   className?: string;
   style?: CSSProperties;
   onChange?: (args: IOnChangeArgs) => void;
   value?: number;
+  initialValues?: IInitialValues;
+}
+
+export interface IInitialValues {
+  count?: number;
+  maxCount?: number;
 }
 
 export interface IProductTitleProps {
@@ -42,6 +49,8 @@ export interface IProduct {
 export interface IProductContextProps {
   product: IProduct;
   counter: number;
+  maxCount?: number;
+
   increaseBy: (value: number) => void;
 }
 
@@ -54,8 +63,19 @@ export interface IUseProductArgs {
   product: IProduct;
   onChange?: (args: IOnChangeArgs) => void;
   value?: number;
+  initialValues?: IInitialValues;
 }
 
 export interface IProductsInCart extends IProduct {
   count: number;
+}
+
+export interface IProductCardHandlers {
+  count: number;
+  isMaxCountReached: boolean;
+  maxCount?: number;
+  product: IProduct;
+
+  increaseBy: (value: number) => void;
+  reset: () => void;
 }
